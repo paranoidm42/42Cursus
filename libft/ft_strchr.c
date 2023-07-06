@@ -6,7 +6,7 @@
 /*   By: ccur <ccur@k1m14s08.42kocaeli.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 00:21:26 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/06 00:21:26 by ccur             ###   ########.fr       */
+/*   Updated: 2023/07/06 13:08:08 by ccur             ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,3 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return ((char *)s);
 }
-
-char test[] = "Elmalar";

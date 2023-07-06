@@ -6,7 +6,7 @@
 /*   By: ccur <ccur@k1m14s08.42kocaeli.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 23:58:06 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/05 23:58:06 by ccur             ###   ########.fr       */
+/*   Updated: 2023/07/06 13:04:16 by ccur             ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcat(char	*dst, const char *src, size_t size)
 {
-    unsigned int		i;
-	unsigned int		len;
+	unsigned int	i;
+	unsigned int	len;
 
 	i = 0;
 	len = 0;
