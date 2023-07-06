@@ -11,20 +11,26 @@
 # **************************************************************************** #
 
 NAME = libft.a
-FLAG = -Wall -Wextra -Werror
-SRC = $(shell find . ! -name "ft_lst*.c" -name "ft_*.c")
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+SRC = *.c
 OBJ = $(SRC:.c=.o)
-
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAG) -c $(SRC)
-	ar rc $(NAME) *.o
+$(NAME): $(OBJ)
+    ar rcs $(NAME) $(OBJ)
+
+shared:
+    $(CC) -shared -o libft.so $(OBJ)
+
 clean:
-	/bin/rm -f  *.o
+    rm -f $(OBJ)
+
 fclean: clean
-	/bin/rm -f $(NAME)
+    rm -f $(NAME) libft.so
+
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re shared
+

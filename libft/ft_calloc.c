@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccur <ccur@student.42kocaeli.com.tr>       +#+  +:+       +#+        */
+/*   By: ccur <ccur@k1m14s08.42kocaeli.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 12:09:06 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/05 12:12:41 by ccur             ###   ########.tr       */
+/*   Created: 2023/07/07 00:38:11 by ccur              #+#    #+#             */
+/*   Updated: 2023/07/07 00:38:11 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
-	char	*str;
+	void	*swp;
 
-	i = 0;
-	str = (char *)s;
-	while (i < n)
-	{
-		str[i] = c;
-		i++;
-	}
-	return (s);
+	swp = malloc(count * size);
+	if (swp)
+		ft_bzero(swp, count * size);
+	return (swp);
 }
