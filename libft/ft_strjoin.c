@@ -16,17 +16,24 @@ char *ft_strjoin(char const *s1, char const *s2)
 {
     if (!s1 || !s2)
         return NULL;
-
+    char *result;
     size_t len1 = ft_strlen(s1);
     size_t len2 = ft_strlen(s2);
     size_t totalLen = len1 + len2;
 
-    char *result = (char *)malloc((totalLen + 1) * sizeof(char));
+    result = (char *)malloc((totalLen + 1) * sizeof(char));
     if (!result)
         return NULL;
 
-    ft_memcpy(result, s1, len1);
-    ft_memcpy(result + len1, s2, len2 + 1);
+    char *temp = result;
+
+    while (*s1)
+        *temp++ = *s1++;
+
+    while (*s2)
+        *temp++ = *s2++;
+
+    *temp = '\0';
 
     return result;
 }
