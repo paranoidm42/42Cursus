@@ -3,17 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccur <ccur@k1m14s08.42kocaeli.com.tr>      +#+  +:+       +#+        */
+/*   By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 02:02:07 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/08 02:02:07 by ccur             ###   ########.fr       */
+/*   Created: 2023/07/10 11:38:50 by ccur              #+#    #+#             */
+/*   Updated: 2023/07/10 14:06:32 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	ft_check(char c, const char *set)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
+	char	*result;
 	size_t	start;
 	size_t	end;
 
@@ -21,9 +36,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	start = 0;
 	end = ft_strlen(s1);
-	while (s1[start] && ft_strchr(set, s1[start]))
+	while (s1[start] && ft_check(s1[start], set))
 		start++;
-	while (end > start && ft_strchr(set, s1[end - 1]))
+	while (end > start && ft_check(s1[end - 1], set))
 		end--;
-	return (ft_substr(s1, start, end - start));
+	result = (char *)malloc((end - start + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, &s1[start], end - start + 1);
+	return (result);
 }

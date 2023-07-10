@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccur <ccur@k1m14s08.42kocaeli.com.tr>      +#+  +:+       +#+        */
+/*   By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 20:18:47 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/08 20:18:47 by ccur             ###   ########.fr       */
+/*   Updated: 2023/07/10 11:07:35 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_count(char const *s, char c)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -27,7 +27,6 @@ static int	ft_count(char const *s, char c)
 	}
 	return (count);
 }
-
 
 static void	ft_allocate(char **tab, char const *s, char sep)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccur <ccur@k1m14s08.42kocaeli.com.tr>      +#+  +:+       +#+        */
+/*   By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 22:26:11 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/07 22:26:11 by ccur             ###   ########.fr       */
+/*   Updated: 2023/07/10 11:05:13 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,26 @@
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char	*str;
-	char	*src;
-    size_t slen;
+	size_t	slen;
 
-	src = (char *)s;
-    slen = ft_strlen(s);
-	if (!src)
+	slen = ft_strlen(s);
+	if (!s)
 		return (NULL);
-    if (start >= ft_strlen(slen))
-    {
-        str = (char *)malloc(sizeof(char));
-        if (!str)
-            return (NULL);
-        *str = '\0';
-    }
-    else
-    {
-        if (slen - start < len )
-            len = slen - start;
-        str = (char *)malloc(sizeof(char));
-        if (!str)
-            return (NULL);
-        ft_strlcpy(str, (char *)(s + start), len +1);
-    }
-    return (str);
+	if (start >= slen)
+	{
+		str = (char *)malloc(1 * sizeof(char));
+		if (!str)
+			return (NULL);
+		*str = '\0';
+	}
+	else
+	{
+		if (slen - start < len)
+			len = slen - start;
+		str = (char *)malloc((len + 1) * sizeof(char));
+		if (!str)
+			return (NULL);
+		ft_strlcpy(str, (s + start), len + 1);
+	}
+	return (str);
 }
