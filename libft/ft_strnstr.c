@@ -6,7 +6,7 @@
 /*   By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:47:27 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/07 13:53:18 by ccur             ###   ########.fr       */
+/*   Updated: 2023/07/10 16:01:35 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,22 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	needle_len;
+	size_t	i;
+	size_t	j;
 
-	if (*needle == '\0')
+	i = 0;
+	j = 0;
+	if (needle[0] == '\0')
 		return ((char *)haystack);
-	needle_len = ft_strlen(needle);
-	while (*haystack != '\0' && len >= needle_len)
+	while (haystack[i] != '\0' && i < len)
 	{
-		if (ft_strncmp(haystack, needle, needle_len) == 0)
-			return ((char *)haystack);
-		haystack++;
-		len--;
+		while (haystack[i + j] && haystack[i + j] == needle[j]
+			&& i + j < len)
+			j++;
+		if (needle[j] == '\0')
+			return ((char *)haystack + i);
+		i++;
+		j = 0;
 	}
 	return (NULL);
 }

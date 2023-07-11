@@ -6,63 +6,76 @@
 /*   By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 20:18:47 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/10 11:07:35 by ccur             ###   ########.fr       */
+/*   Updated: 2023/07/11 02:22:33 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
-static int	ft_count(char const *s, char c)
+static int	ft_count_word(char const *s, char c)
 {
-	int	count;
 	int	i;
+	int	word;
 
-	count = 0;
 	i = 0;
-	while (s[i])
+	word = 0;
+	while (s && s[i])
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			count++;
-		i++;
+		if (s[i] != c)
+		{
+			word++;
+			while (s[i] != c && s[i])
+				i++;
+		}
+		else
+			i++;
 	}
-	return (count);
+	return (word);
 }
 
-static void	ft_allocate(char **tab, char const *s, char sep)
+static int	ft_size_word(char const *s, char c, int i)
 {
-	char		**tab_p;
-	char const	*tmp;
+	int	size;
 
-	tmp = s;
-	tab_p = tab;
-	while (*tmp)
+	size = 0;
+	while (s[i] != c && s[i])
 	{
-		while (*s == sep)
-			s++;
-		tmp = s;
-		while (*tmp && *tmp != sep)
-			tmp++;
-		if (tmp > s)
-		{
-			*tab_p = ft_substr(s, 0, tmp - s);
-			tab_p++;
-		}
-		s = tmp;
+		size++;
+		i++;
 	}
-	*tab_p = NULL;
+	return (size);
+}
+
+static char	**ft_free(char **strs, int j)
+{
+	while (j-- > 0)
+		free(strs[j]);
+	free(strs);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
-	int		size;
+	int		i;
+	int		word;
+	char	**strs;
+	int		j;
 
-	if (!s)
+	i = 0;
+	j = -1;
+	word = ft_count_word(s, c);
+	strs = (char **)malloc((word + 1) * sizeof(char *));
+	if (!strs)
 		return (NULL);
-	size = ft_count(s, c);
-	result = (char **)malloc(sizeof(char *) * (size + 1));
-	if (!result)
-		return (NULL);
-	ft_allocate(result, s, c);
-	return (result);
+	while (++j < word)
+	{
+		while (s[i] == c)
+			i++;
+		strs[j] = ft_substr(s, i, ft_size_word(s, c, i));
+		if (!(strs[j]))
+			return (ft_free(strs, j));
+		i += ft_size_word(s, c, i);
+	}
+	strs[j] = 0;
+	return (strs);
 }
