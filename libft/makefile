@@ -3,28 +3,38 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ccur <ccur@student.42kocaeli.com.tr>       +#+  +:+       +#+         #
+#    By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/05 16:28:46 by ccur              #+#    #+#              #
-#    Updated: 2023/07/05 16:40:35 by ccur             ###   ########.tr        #
+#    Updated: 2023/07/11 08:02:18 by ccur             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-FLAG = -Wall -Wextra -Werror
-SRC = $(shell find . ! -name "ft_lst*.c" -name "ft_*.c")
-OBJ = $(SRC:.c=.o)
+NAME	:= libft.a
 
+CC		:= gcc
+CFLAGS	:= -Wall -Wextra -Werror
+
+FILES	:= $(shell find . -type f ! -name "ft_lst*.c" -name "ft_*.c")
+OBJ		:= $(FILES:%.c=%.o)
+
+BSRC	:= $(shell find . -type f -name "ft_lst*.c")
+B_OBJ	:= $(BSRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAG) -c $(SRC)
-	ar rc $(NAME) *.o
+$(NAME): $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
+
+bonus: $(OBJ) $(B_OBJ)
+	ar -rcs $(NAME) $(OBJ) $(B_OBJ)
+
 clean:
-	/bin/rm -f  *.o
+	@rm -f *.o
+
 fclean: clean
-	/bin/rm -f $(NAME)
+	@rm -f $(NAME)
+
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 02:26:26 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/11 06:41:49 by ccur             ###   ########.fr       */
+/*   Created: 2023/07/11 07:51:46 by ccur              #+#    #+#             */
+/*   Updated: 2023/07/11 07:57:35 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (*lst)
+	t_list	*cursor;
+
+	while (*lst != NULL)
 	{
-		new->next = *lst;
-		*lst = new;
+		cursor = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = cursor;
 	}
-	else
-		*lst = new;
 }

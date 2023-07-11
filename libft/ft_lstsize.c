@@ -6,7 +6,7 @@
 /*   By: ccur <ccur@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 02:36:21 by ccur              #+#    #+#             */
-/*   Updated: 2023/07/11 02:39:32 by ccur             ###   ########.fr       */
+/*   Updated: 2023/07/11 07:59:42 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int	size;
 
-	if (!lst)
-		return (0);
-	while (lst->next)
+	size = 0;
+	while (lst != NULL)
 	{
 		lst = lst->next;
-		i++;
+		size++;
 	}
-	return (i);
+	return (size);
 }
