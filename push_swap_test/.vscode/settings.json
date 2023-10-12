@@ -1,0 +1,15 @@
+{
+	"files.associations": {
+		"__mutex_base": "c",
+		"__node_handle": "c",
+		"array": "c",
+		"functional": "c",
+		"istream": "c",
+		"memory": "c",
+		"optional": "c",
+		"ostream": "c",
+		"string_view": "c",
+		"tuple": "c",
+		"vector": "c"
+	}
+}
