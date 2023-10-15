@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccur <ccur@student.42kocaeli.com.tr>       +#+  +:+       +#+        */
+/*   By: ccur <ccur@k1m14s08.42kocaeli.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:45:45 by ccur              #+#    #+#             */
-/*   Updated: 2023/10/11 13:58:29 by ccur             ###   ########.fr       */
+/*   Updated: 2023/10/15 19:20:37 by ccur             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ static int	check_all_arg(t_push *s)
 	if (ft_fill_list(s) == 0)
 		return (0);
 	if (ft_check_duplicate(s->a, s->a_len) == 0)
-	{
-		free(s->a);
 		return (0);
-	}
 	return (1);
 }
 
@@ -63,7 +60,11 @@ int	main(int argc, char **argv)
 	if (!s.a)
 		return (0);
 	if (check_all_arg(&s) == 0)
-		return (ft_putstr_fd("Error\n", 2), ft_free(s.swap, s.len, argc), 0);
+	{
+		free(s.a);
+		ft_free(s.swap, s.len, argc);
+		return (ft_putstr_fd("Error\n", 2), 0);
+	}
 	if (ft_check_sort_smal(s.a, s.len) == 0)
 		ft_push_swap(&s);
 	free(s.a);
